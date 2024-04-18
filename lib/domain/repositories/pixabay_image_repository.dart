@@ -1,5 +1,5 @@
 import '../entities/entity.dart';
 
-abstract class PixabayImageRepository {
+abstract interface class PixabayImageRepository {
   Future<ImageResponseEntity> getImages(int page);
 }
