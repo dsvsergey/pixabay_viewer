@@ -1,5 +1,6 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:pixabay_viewer/domain/entities/image_entity.dart';
 
 import '../api.dart';
 
@@ -63,4 +64,33 @@ abstract class ImageModel implements Built<ImageModel, ImageModelBuilder> {
   static ImageModel fromJson(Map<String, dynamic> json) {
     return dataSerializers.deserializeWith(ImageModel.serializer, json)!;
   }
+}
+
+extension ImageModelX on ImageModel {
+  ImageEntity get entity => ImageEntity(
+        (b) => b
+          ..id = id
+          ..pageURL = pageURL
+          ..type = type
+          ..tags = tags
+          ..previewURL = previewURL
+          ..previewWidth = previewWidth
+          ..previewHeight = previewHeight
+          ..webformatURL = webformatURL
+          ..webformatWidth = webformatWidth
+          ..webformatHeight = webformatHeight
+          ..largeImageURL = largeImageURL
+          ..fullHDURL = fullHDURL
+          ..imageURL = imageURL
+          ..imageWidth = imageWidth
+          ..imageHeight = imageHeight
+          ..imageSize = imageSize
+          ..views = views
+          ..downloads = downloads
+          ..likes = likes
+          ..comments = comments
+          ..userId = userId
+          ..user = user
+          ..userImageURL = userImageURL,
+      );
 }
