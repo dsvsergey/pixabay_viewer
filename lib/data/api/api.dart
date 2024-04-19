@@ -7,6 +7,7 @@ import 'requests/requests.dart';
 
 export 'models/models.dart';
 export 'requests/requests.dart';
+export 'services/pixabay_api_client.dart';
 
 part 'api.g.dart';
 

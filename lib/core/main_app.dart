@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import '../presentation/screens/cubits/gallery_screen_cubit.dart';
 import '../presentation/screens/gallery_screen.dart';
 
 class MainApp extends StatelessWidget {
@@ -22,7 +24,10 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const GalleryScreen(),
+      home: BlocProvider(
+        create: (context) => GalleryScreenCubit()..nextImages(),
+        child: const GalleryScreen(),
+      ),
     );
   }
 }
