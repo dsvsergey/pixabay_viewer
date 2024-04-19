@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:injectable/injectable.dart';
 import '../../core/constants/api_constants.dart';
 import '../api/api.dart';
@@ -7,15 +8,22 @@ import '../../domain/repositories/pixabay_image_repository.dart';
 
 @Singleton(as: PixabayImageRepository)
 class PixabayImageRepositoryImpl implements PixabayImageRepository {
-  final PixabayApiClient _remoteDataSource;
+  final PixabayApiClient remoteDataSource;
 
-  PixabayImageRepositoryImpl({required remoteDataSource})
-      : _remoteDataSource = remoteDataSource;
+  PixabayImageRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<ImageResponseEntity> getImages(int page) => _remoteDataSource
+  Future<ImageResponseEntity> getImages(int page) => remoteDataSource
       .fetchImages(PixabayApiParameters((p0) => p0
         ..key = ApiConstants.apiKey
-        ..page = page))
-      .then((value) => value.entity);
+        ..page = page
+        ..perPage = 50))
+      .then((value) =>
+          value?.entity ??
+          ImageResponseEntity(
+            (p0) => p0
+              ..total = 0
+              ..totalHits = 0
+              ..hits = ListBuilder([]),
+          ));
 }

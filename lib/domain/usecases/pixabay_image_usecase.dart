@@ -9,11 +9,10 @@ abstract interface class PixabayImageUseCase {
 
 @LazySingleton(as: PixabayImageUseCase)
 class PixabayImageUseCaseImpl implements PixabayImageUseCase {
-  final PixabayImageRepository _repository;
+  final PixabayImageRepository repository;
 
-  PixabayImageUseCaseImpl({required repository}) : _repository = repository;
+  PixabayImageUseCaseImpl({required this.repository});
 
   @override
-  Future<ImageResponseEntity> getImages(int page) =>
-      _repository.getImages(page);
+  Future<ImageResponseEntity> getImages(int page) => repository.getImages(page);
 }

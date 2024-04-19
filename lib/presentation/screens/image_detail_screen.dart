@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
 
 class ImageDetailScreen extends StatelessWidget {
-  const ImageDetailScreen({super.key});
+  final String imageUrl;
+
+  const ImageDetailScreen({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("imageModel.title"),
+        title: const Text('Image Detail'),
       ),
-      body: Center(
-        child: Image.network(
-            'https://cdn.pixabay.com/photo/2022/09/02/19/55/crystal-7428278_1280.jpg'),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final appBarHeight = AppBar().preferredSize.height;
+          final availableHeight = constraints.maxHeight - appBarHeight;
+
+          return Stack(
+            children: [
+              Center(
+                child: SizedBox(
+                  height: availableHeight,
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Image.network(imageUrl),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

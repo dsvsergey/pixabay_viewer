@@ -7,8 +7,9 @@ import '../api.dart';
 
 @singleton
 class PixabayApiClient {
-  Future<ImageResponseModel> fetchImages(PixabayApiParameters params) async {
-    final queryParams = params.toJson();
+  Future<ImageResponseModel?> fetchImages(PixabayApiParameters params) async {
+    final queryParams =
+        params.toJson().map((key, value) => MapEntry(key, value?.toString()));
     queryParams.removeWhere((key, value) => value == null);
 
     final uri =
@@ -18,7 +19,8 @@ class PixabayApiClient {
     if (response.statusCode == 200) {
       return ImageResponseModel.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to load images');
+      return null;
+      // throw Exception('Failed to load images');
     }
   }
 }
