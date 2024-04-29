@@ -88,56 +88,59 @@ class _GalleryScreenState extends State<GalleryScreen>
               final likes = state.images?[index].likes ?? 0;
               final views = state.images?[index].views ?? 0;
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          ImageDetailScreen(imageUrl: imageUrl),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return ScaleTransition(
-                          scale: Tween<double>(
-                            begin: 0.0,
-                            end: 1.0,
-                          ).animate(CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.easeInOut,
-                          )),
-                          child: child,
-                        );
-                      },
-                    ),
-                  );
-                },
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1.0,
+              return Hero(
+                tag: imageUrl,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            ImageDetailScreen(imageUrl: imageUrl),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return ScaleTransition(
+                            scale: Tween<double>(
+                              begin: 0.0,
+                              end: 1.0,
+                            ).animate(CurvedAnimation(
+                              parent: animation,
+                              curve: Curves.easeInOut,
+                            )),
+                            child: child,
+                          );
+                        },
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Image.network(
-                            imageUrl,
-                            fit: BoxFit.contain,
+                    );
+                  },
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Image.network(
+                              imageUrl,
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            const Icon(Icons.favorite),
-                            Text(' $likes'),
-                            const Spacer(),
-                            const Icon(Icons.visibility),
-                            Text(' $views'),
-                          ],
-                        ),
-                      ],
+                          Row(
+                            children: [
+                              const Icon(Icons.favorite),
+                              Text(' $likes'),
+                              const Spacer(),
+                              const Icon(Icons.visibility),
+                              Text(' $views'),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

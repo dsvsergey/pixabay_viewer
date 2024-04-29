@@ -21,9 +21,12 @@ class ImageDetailScreen extends StatelessWidget {
               Center(
                 child: SizedBox(
                   height: availableHeight,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Image.network(imageUrl),
+                  child: Hero(
+                    tag: imageUrl,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Image.network(imageUrl),
+                    ),
                   ),
                 ),
               ),
