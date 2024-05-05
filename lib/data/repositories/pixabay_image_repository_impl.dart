@@ -1,12 +1,10 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:injectable/injectable.dart';
 import '../../core/constants/api_constants.dart';
 import '../api/api.dart';
 
 import '../../domain/entities/entity.dart';
 import '../../domain/repositories/pixabay_image_repository.dart';
 
-@Singleton(as: PixabayImageRepository)
 class PixabayImageRepositoryImpl implements PixabayImageRepository {
   final PixabayApiClient remoteDataSource;
 

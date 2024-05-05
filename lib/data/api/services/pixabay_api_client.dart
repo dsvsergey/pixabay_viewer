@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:injectable/injectable.dart';
 
 import '../../../core/constants/api_constants.dart';
 import '../api.dart';
 
-@singleton
 class PixabayApiClient {
   Future<ImageResponseModel?> fetchImages(PixabayApiParameters params) async {
     final queryParams =

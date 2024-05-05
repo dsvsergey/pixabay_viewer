@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
+import 'package:get/get.dart';
 
 import 'core/main_app.dart';
+import 'data/api/api.dart';
+import 'data/repositories/pixabay_image_repository_impl.dart';
+import 'domain/repositories/pixabay_image_repository.dart';
+import 'domain/usecases/pixabay_image_usecase.dart';
 
-import 'main.config.dart';
-
-@InjectableInit()
-void _configureDependencies() => GetIt.I.init();
+void setupDependencies() {
+  Get.lazyPut(() => PixabayApiClient());
+  Get.lazyPut<PixabayImageRepository>(
+      () => PixabayImageRepositoryImpl(remoteDataSource: Get.find()));
+  Get.lazyPut<PixabayImageUseCase>(
+      () => PixabayImageUseCaseImpl(repository: Get.find()));
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  _configureDependencies();
+  setupDependencies();
   runApp(const MainApp());
 }
