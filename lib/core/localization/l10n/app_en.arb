@@ -1,3 +1,5 @@
 {
-    "galleryTitle": "Image Gallery"
+    "galleryTitle": "Image Gallery",
+    "search": "Search",
+    "imageDetail": "Image Detail"
 }

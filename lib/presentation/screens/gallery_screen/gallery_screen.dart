@@ -50,17 +50,19 @@ class _GalleryScreenState extends State<GalleryScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.galleryTitle),
+        title: Text(AppLocalizations.of(context)!.galleryTitle,
+            style: const TextStyle(
+                color: Colors.black87, fontWeight: FontWeight.bold)),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48.0),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               onChanged: (value) => controller.setSearchTerm(value),
-              decoration: const InputDecoration(
-                labelText: 'Search',
-                border: OutlineInputBorder(),
-                suffixIcon: Icon(Icons.search),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.search,
+                border: const OutlineInputBorder(),
+                suffixIcon: const Icon(Icons.search),
               ),
             ),
           ),
