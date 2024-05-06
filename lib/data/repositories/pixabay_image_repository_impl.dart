@@ -11,17 +11,19 @@ class PixabayImageRepositoryImpl implements PixabayImageRepository {
   PixabayImageRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<ImageResponseEntity> getImages(int page) => remoteDataSource
-      .fetchImages(PixabayApiParameters((p0) => p0
-        ..key = ApiConstants.apiKey
-        ..page = page
-        ..perPage = 50))
-      .then((value) =>
-          value?.entity ??
-          ImageResponseEntity(
-            (p0) => p0
-              ..total = 0
-              ..totalHits = 0
-              ..hits = ListBuilder([]),
-          ));
+  Future<ImageResponseEntity> getImages(int page, {String? query}) =>
+      remoteDataSource
+          .fetchImages(PixabayApiParameters((p0) => p0
+            ..key = ApiConstants.apiKey
+            ..q = query
+            ..page = page
+            ..perPage = 50))
+          .then((value) =>
+              value?.entity ??
+              ImageResponseEntity(
+                (p0) => p0
+                  ..total = 0
+                  ..totalHits = 0
+                  ..hits = ListBuilder([]),
+              ));
 }

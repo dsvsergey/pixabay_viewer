@@ -34,7 +34,7 @@ class _GalleryScreenState extends State<GalleryScreen>
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       if (!controller.isLoading.isTrue) {
-        controller.nextImages();
+        controller.fetchImages();
       }
     }
   }
@@ -51,6 +51,20 @@ class _GalleryScreenState extends State<GalleryScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.galleryTitle),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              onChanged: (value) => controller.setSearchTerm(value),
+              decoration: const InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(Icons.search),
+              ),
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

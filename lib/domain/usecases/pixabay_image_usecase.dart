@@ -2,7 +2,7 @@ import '../entities/entity.dart';
 import '../repositories/pixabay_image_repository.dart';
 
 abstract interface class PixabayImageUseCase {
-  Future<ImageResponseEntity> getImages(int page);
+  Future<ImageResponseEntity> getImages(int page, {String? query});
 }
 
 class PixabayImageUseCaseImpl implements PixabayImageUseCase {
@@ -11,5 +11,6 @@ class PixabayImageUseCaseImpl implements PixabayImageUseCase {
   PixabayImageUseCaseImpl({required this.repository});
 
   @override
-  Future<ImageResponseEntity> getImages(int page) => repository.getImages(page);
+  Future<ImageResponseEntity> getImages(int page, {String? query}) =>
+      repository.getImages(page, query: query);
 }

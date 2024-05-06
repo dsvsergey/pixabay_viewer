@@ -17,9 +17,33 @@ class ImageTile extends StatelessWidget {
       },
       child: GridTile(
         footer: GridTileBar(
-          leading: const Icon(Icons.favorite),
-          title: Text('${image.likes} Likes'),
-          trailing: const Icon(Icons.visibility),
+          leading: Row(
+            children: [
+              const Icon(
+                Icons.favorite,
+                color: Colors.black87,
+              ),
+              Text(
+                '${image.likes}',
+                style: const TextStyle(
+                    color: Colors.black87, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          title: const Spacer(),
+          trailing: Row(
+            children: [
+              const Icon(
+                Icons.visibility,
+                color: Colors.black87,
+              ),
+              Text(
+                '${image.views}',
+                style: const TextStyle(
+                    color: Colors.black87, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
         ),
         child: Image.network(image.webformatURL ?? '', fit: BoxFit.cover),
       ),

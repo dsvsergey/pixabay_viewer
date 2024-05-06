@@ -29,5 +29,5 @@ dev_dependencies:
   built_value_generator: ^8.9.2
 
 flutter:
-  # uses-material-design: true
+  uses-material-design: true
   generate: true
