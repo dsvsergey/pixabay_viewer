@@ -13,7 +13,10 @@ class ImageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ImageDetailScreen(imageUrl: image.webformatURL ?? ''));
+        Get.to(() => ImageDetailScreen(imageUrl: image.webformatURL ?? ''),
+            transition: Transition.fadeIn,
+            curve: Curves.easeIn,
+            duration: const Duration(milliseconds: 500));
       },
       child: GridTile(
         footer: GridTileBar(
